@@ -3,6 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { addFavoriteTeacher, getFavoriteTeachers, removeFavoriteTeacher } from '@/lib/api'
 import { useAuthStore } from '@/lib/store/authStore'
+import { notifyError, notifyLoginRequired, notifySuccess } from '@/lib/notify'
 import styles from './FavoriteButton.module.css'
 
 interface FavoriteButtonProps {
@@ -24,19 +25,27 @@ export default function FavoriteButton({ teacherId }: FavoriteButtonProps) {
 
     const addMutation = useMutation({
         mutationFn: () => addFavoriteTeacher(teacherId),
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['favorites'] }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['favorites'] })
+            notifySuccess('Teacher added to favorites')
+        },
+        onError: (error) => notifyError(error, 'Failed to add teacher to favorites'),
     })
 
     const removeMutation = useMutation({
         mutationFn: () => removeFavoriteTeacher(teacherId),
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['favorites'] }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['favorites'] })
+            notifySuccess('Teacher removed from favorites')
+        },
+        onError: (error) => notifyError(error, 'Failed to remove teacher from favorites'),
     })
 
     const isPending = addMutation.isPending || removeMutation.isPending
 
     const handleClick = () => {
         if (!isAuthenticated) {
-            alert('Please log in to add teachers to favorites')
+            notifyLoginRequired('Log in to add teachers to favorites.')
             return
         }
         isFavorite ? removeMutation.mutate() : addMutation.mutate()

@@ -4,8 +4,7 @@ import './globals.css'
 import Header from '@/components/Header/Header'
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider'
 import AuthProvider from '@/components/AuthProvider/AuthProvider'
-
-// Inter
+import ToastProvider from '@/components/ToastProvider/ToastProvider'
 
 import { Roboto } from 'next/font/google';
 
@@ -37,6 +36,7 @@ export default function RootLayout({
                         <Header />
                         {children}
                     </AuthProvider>
+                    <ToastProvider />
                 </TanStackProvider>
             </body>
         </html>

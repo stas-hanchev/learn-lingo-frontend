@@ -5,17 +5,16 @@ import { FormikHelpers } from 'formik'
 
 import styles from './AuthNavigation.module.css'
 
-import { useState } from 'react'
 import Modal from '../Modal/Modal'
 import RegistrationForm from '../Forms/RegistrationForm/RegistrationForm'
 import LoginForm from '../Forms/LoginForm/LoginForm'
 import { login, register, logout } from '@/lib/api'
 
 import { useAuthStore } from '@/lib/store/authStore'
-// import { useRouter } from 'next/navigation'
+import { useAuthModalStore } from '@/lib/store/authModalStore'
+import { notifyError, notifySuccess } from '@/lib/notify'
 
 export default function AuthNavigation() {
-    // const router = useRouter()
     const { isAuthenticated, user } = useAuthStore()
 
     const setUser = useAuthStore((state) => state.setUser);
@@ -24,15 +23,8 @@ export default function AuthNavigation() {
         (state) => state.clearIsAuthenticated
     );
 
-    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
-    const [isRegistrationModalOpen, setIsRegistrationModalOpen] =
-        useState(false)
-
-    const openLoginModal = () => setIsLoginModalOpen(true)
-    const closeLoginModal = () => setIsLoginModalOpen(false)
-
-    const openRegistrationModal = () => setIsRegistrationModalOpen(true)
-    const closeRegistrationModal = () => setIsRegistrationModalOpen(false)
+    const { openedModal, openLoginModal, openRegistrationModal, closeModal } =
+        useAuthModalStore()
 
     const handleRegistrationSubmit = async (
         values: RegisterRequestBody,
@@ -43,14 +35,13 @@ export default function AuthNavigation() {
             setUser(response);
 
             if (response._id) {
-                alert(
-                    `User named ${response.name} has been successfully registered!`
-                )
                 actions.resetForm()
+                closeModal()
+                notifySuccess(`Welcome to LearnLingo, ${response.name}! Your account has been created.`)
             }
         } catch (error) {
             console.error(error)
-            alert(`Oops, error occured(`)
+            notifyError(error, 'Registration failed. Please try again.')
         } finally {
             actions.setSubmitting(false)
         }
@@ -65,23 +56,27 @@ export default function AuthNavigation() {
             setUser(response);
             
             if (response._id) {
-                alert(
-                    `User named ${response.name} has been successfully logged in!`
-                )
                 actions.resetForm()
+                closeModal()
+                notifySuccess(`Welcome back, ${response.name}!`)
             }
         } catch (error) {
             console.error(error)
-            alert(`Oops, error occured(`)
+            notifyError(error, 'Login failed. Please check your email and password.')
         } finally {
             actions.setSubmitting(false)
         }
     }
 
     const handleLogout = async () => {
-        await logout();
-        clearIsAuthenticated();
-        // router.push('/sign-in');
+        try {
+            await logout();
+            clearIsAuthenticated();
+            notifySuccess('You have been logged out.')
+        } catch (error) {
+            console.error(error)
+            notifyError(error, 'Failed to log out. Please try again.')
+        }
     }
 
     return !isAuthenticated ? (
@@ -97,8 +92,8 @@ export default function AuthNavigation() {
                 Log in
             </button>
 
-            {isLoginModalOpen && (
-                <Modal onClose={closeLoginModal}>
+            {openedModal === 'login' && (
+                <Modal onClose={closeModal}>
                     <h2 className={styles.heading}>Log in</h2>
                     <p className={styles.description}>
                         Welcome back! Please enter your credentials to access
@@ -116,8 +111,8 @@ export default function AuthNavigation() {
                 Registration
             </button>
 
-            {isRegistrationModalOpen && (
-                <Modal onClose={closeRegistrationModal}>
+            {openedModal === 'registration' && (
+                <Modal onClose={closeModal}>
                     <h2 className={styles.heading}>Registration</h2>
                     <p className={styles.description}>
                         Thank you for your interest in our platform! In order to

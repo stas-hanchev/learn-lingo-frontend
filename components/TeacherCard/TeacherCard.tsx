@@ -12,6 +12,7 @@ import { useAuthStore } from '@/lib/store/authStore'
 import Modal from '../Modal/Modal'
 import BookingForm from '@/components/Forms/BookingForm/BookingForm'
 import { FormikHelpers } from 'formik'
+import { notifyError, notifyLoginRequired, notifySuccess } from '@/lib/notify'
 
 interface TeacherCardProps {
     teacher: Teacher
@@ -19,7 +20,7 @@ interface TeacherCardProps {
 }
 
 export default function TeacherCard({ teacher, levelValue }: TeacherCardProps) {
-    const { isAuthenticated, user } = useAuthStore()
+    const { isAuthenticated } = useAuthStore()
     const [isExpanded, setIsExpanded] = useState(false)
     const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
 
@@ -35,7 +36,7 @@ export default function TeacherCard({ teacher, levelValue }: TeacherCardProps) {
         if (isAuthenticated) {
             setIsBookingModalOpen(true)
         } else {
-            alert('First, you need to log in!')
+            notifyLoginRequired('Log in to book a trial lesson.')
         }
     }
 
@@ -44,15 +45,14 @@ export default function TeacherCard({ teacher, levelValue }: TeacherCardProps) {
         actions: FormikHelpers<BookingRequestBody>
     ) => {
         try {
-            const formattedValues = Object.entries(values)
-                .map(([key, value]) => `${key} - ${value}`)
-                .join('\n')
-            alert(
-                `${user?.name} successfully booked a lesson with ${teacher.name} ${teacher.surname}.\nInformation sent:\n${formattedValues}`
+            actions.resetForm()
+            setIsBookingModalOpen(false)
+            notifySuccess(
+                `Trial lesson with ${teacher.name} ${teacher.surname} is booked! We will contact you at ${values.email}.`
             )
         } catch (error) {
             console.error(error)
-            alert(`Oops, error occured(`)
+            notifyError(error, 'Failed to book a lesson. Please try again.')
         } finally {
             actions.setSubmitting(false)
         }

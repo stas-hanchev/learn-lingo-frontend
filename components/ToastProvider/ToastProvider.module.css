@@ -1,0 +1,21 @@
+.content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.action {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #F4C550;
+    color: #121417;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.action:hover,
+.action:focus-visible {
+    background-color: #FFDC86;
+}
