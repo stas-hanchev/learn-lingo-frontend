@@ -8,7 +8,6 @@ interface ReviewItemProps {
 };
 
 export default function ReviewItem({ review }: ReviewItemProps) {
-    console.log(JSON.stringify(review));
     return (
         <div className={styles.review_container}>
             <div className={styles.photo_name_rating_container}>

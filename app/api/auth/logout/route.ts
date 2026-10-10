@@ -1,17 +1,22 @@
-import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
-import { api } from '../../api';
+import { NextRequest, NextResponse } from 'next/server'
+import { cookies } from 'next/headers'
+import { api } from '../../api'
+import { clearAuthCookies, forbidden, getProxyHeaders, isSameOrigin } from '../../_lib/proxy'
 
-export async function POST() {
-  const cookieStore = await cookies();
-  await api.post('auth/logout', {
-    headers: {
-      Cookie: cookieStore.toString(),
-    },
-  });
+export async function POST(req: NextRequest) {
+    if (!isSameOrigin(req)) return forbidden()
 
-  cookieStore.delete('accessToken');
-  cookieStore.delete('refreshToken');
+    const cookieStore = await cookies()
 
-  return NextResponse.json({ message: 'Logged out successfully' });
+    try {
+        await api.post('auth/logout', null, {
+            headers: getProxyHeaders(req, cookieStore),
+        })
+    } catch (error) {
+        console.error('Logout request failed:', (error as Error).message)
+    }
+
+    clearAuthCookies(cookieStore)
+
+    return NextResponse.json({ message: 'Logged out successfully' })
 }

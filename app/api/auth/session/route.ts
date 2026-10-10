@@ -1,53 +1,29 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { api, ApiError } from '../../api'
-import { splitCookiesString, parse as parseSetCookie } from 'set-cookie-parser'
+import { clearAuthCookies, copyAuthCookies, getProxyHeaders } from '../../_lib/proxy'
 
-export async function GET() {
+export async function GET(req: NextRequest) {
     const cookieStore = await cookies()
 
-    const accessToken = cookieStore.get('accessToken')?.value
-    const refreshToken = cookieStore.get('refreshToken')?.value
-
-    if (accessToken) {
-        return NextResponse.json({ success: true })
-    }
-
-    if (!refreshToken) {
+    if (!cookieStore.get('sessionId')?.value) {
         return NextResponse.json({ success: false })
     }
 
     try {
         const apiRes = await api.get('auth/session', {
-            headers: {
-                Cookie: cookieStore.toString(),
-            },
+            headers: getProxyHeaders(req, cookieStore),
         })
 
-        const setCookie = apiRes.headers['set-cookie']
-        if (!setCookie) {
-            return NextResponse.json({ success: false })
-        }
-
-        const cookieArray = Array.isArray(setCookie)
-            ? setCookie
-            : splitCookiesString(setCookie)
-        const parsedCookies = parseSetCookie(cookieArray)
-
-        for (const c of parsedCookies) {
-            cookieStore.set(c.name, c.value, {
-                expires: c.expires,
-                path: c.path,
-                maxAge: c.maxAge,
-                httpOnly: c.httpOnly,
-                secure: c.secure,
-                sameSite: c.sameSite as 'lax' | 'strict' | 'none' | undefined,
-            })
-        }
+        copyAuthCookies(apiRes.headers['set-cookie'], cookieStore)
 
         return NextResponse.json({ success: true })
     } catch (error) {
-        console.error('Session refresh failed:', (error as ApiError).message)
+        if ((error as ApiError).response?.status === 401) {
+            clearAuthCookies(cookieStore)
+        } else {
+            console.error('Session check failed:', (error as ApiError).message)
+        }
         return NextResponse.json({ success: false })
     }
 }

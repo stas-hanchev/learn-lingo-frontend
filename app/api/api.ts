@@ -4,5 +4,6 @@ export type ApiError = AxiosError<{ message: string }>
 
 export const api = axios.create({
   baseURL: process.env.TEACHERS_API_URL,
-  withCredentials: true,
+  timeout: 10000,
+  maxRedirects: 0,
 });

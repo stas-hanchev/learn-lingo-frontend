@@ -1,42 +1,34 @@
-// app/api/auth/login/route.ts
-
 import { NextRequest, NextResponse } from 'next/server'
-import { api, ApiError } from '../../api'
-import { splitCookiesString, parse as parseSetCookie } from 'set-cookie-parser'
 import { cookies } from 'next/headers'
+import { api } from '../../api'
+import {
+    badRequest,
+    copyAuthCookies,
+    errorResponse,
+    forbidden,
+    getProxyHeaders,
+    isSameOrigin,
+    readJsonBody,
+} from '../../_lib/proxy'
 
 export async function POST(req: NextRequest) {
-    const body = await req.json();
-    try {
-        const apiRes = await api.post('auth/login', body);
-        const cookieStore = await cookies();
-        const setCookie = apiRes.headers['set-cookie'];
-        if (setCookie) {
-            const cookieArray = Array.isArray(setCookie) ? setCookie : splitCookiesString(setCookie);
-            const parsedCookies = parseSetCookie(cookieArray)
+    if (!isSameOrigin(req)) return forbidden()
 
-            for (const c of parsedCookies) {
-                cookieStore.set(c.name, c.value, {
-                    expires: c.expires,
-                    path: c.path,
-                    maxAge: c.maxAge,
-                    httpOnly: c.httpOnly,
-                    secure: c.secure,
-                    sameSite: c.sameSite as 'lax' | 'strict' | 'none' | undefined,
-                });
-            }
-            return NextResponse.json(apiRes.data);
+    const body = await readJsonBody(req)
+    if (!body) return badRequest()
+
+    try {
+        const apiRes = await api.post('auth/login', body, {
+            headers: getProxyHeaders(req),
+        })
+        const cookieStore = await cookies()
+
+        if (!copyAuthCookies(apiRes.headers['set-cookie'], cookieStore)) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
         }
 
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        return NextResponse.json(apiRes.data, { status: apiRes.status })
     } catch (error) {
-        return NextResponse.json(
-            {
-                error:
-                    (error as ApiError).response?.data?.message ??
-                    (error as ApiError).message,
-            },
-            { status: (error as ApiError).status }
-        )
+        return errorResponse(error)
     }
 }

@@ -1,31 +1,18 @@
-import { NextResponse } from 'next/server'
-import { api, ApiError } from '../api'
+import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
+import { api } from '../api'
+import { errorResponse, getProxyHeaders } from '../_lib/proxy'
 
-export async function GET() {
-    const cookieStore = await cookies();
+export async function GET(req: NextRequest) {
+    const cookieStore = await cookies()
 
     try {
-        const { data } = await api.get(
-            `/favorites`,
-            {
-                headers: {
-                    Cookie: cookieStore.toString(),
-                },
-            }
-        );
-        
-        console.log(data);
+        const { data } = await api.get('/favorites', {
+            headers: getProxyHeaders(req, cookieStore),
+        })
 
         return NextResponse.json(data)
     } catch (error) {
-        return NextResponse.json(
-            {
-                error:
-                    (error as ApiError).response?.data?.message ??
-                    (error as ApiError).message,
-            },
-            { status: (error as ApiError).status ?? 500 }
-        )
+        return errorResponse(error)
     }
 }

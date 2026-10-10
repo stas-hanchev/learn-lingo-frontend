@@ -59,7 +59,6 @@ export default function TeachersPage() {
 
     const teachers = teachersQuery.data?.teachers ?? []
     const hasTeachers = teachers.length > 0
-    console.log(teachers)
 
     return (
         <main className={styles.main}>
