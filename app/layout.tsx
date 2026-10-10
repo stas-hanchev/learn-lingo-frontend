@@ -5,15 +5,7 @@ import Header from '@/components/Header/Header'
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider'
 import AuthProvider from '@/components/AuthProvider/AuthProvider'
 import ToastProvider from '@/components/ToastProvider/ToastProvider'
-
-import { Roboto } from 'next/font/google';
-
-const roboto = Roboto({
-  subsets: ['latin'], 
-  weight: ['400', '500', '700'],
-  variable: '--font-roboto', 
-  display: 'swap', 
-});
+import { roboto } from '@/lib/fonts'
 
 export const metadata: Metadata = {
     title: 'LearnLingo',
