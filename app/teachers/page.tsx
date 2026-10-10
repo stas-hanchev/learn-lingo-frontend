@@ -20,6 +20,8 @@ import Loader from '@/components/Loader/Loader'
 import NoTeachersFound from '@/components/NoTeachersFound/NoTeachersFound'
 import TeacherList from '@/components/TeacherList/TeacherList'
 
+const TEACHERS_PER_PAGE = 3
+
 export default function TeachersPage() {
     const [filters, setFilters] = useState<SelectFilters | null>(null)
 
@@ -41,13 +43,13 @@ export default function TeachersPage() {
                         ? filters?.price?.value
                         : undefined,
                 page: pageParam,
-                perPage: 3,
+                perPage: TEACHERS_PER_PAGE,
             })
         },
         initialPageParam: 1,
         getNextPageParam: (lastResponse: TeachersResponse) => {
             const nextPage = lastResponse.page + 1
-            return nextPage <= lastResponse.totalItems ? nextPage : undefined
+            return nextPage <= lastResponse.totalPages ? nextPage : undefined
         },
         select: (data) => {
             return {
@@ -73,12 +75,17 @@ export default function TeachersPage() {
                                 teachers={teachers}
                                 levelValue={filters?.level?.value}
                             />
-                            <button
-                                className={styles.load_more_btn}
-                                onClick={() => teachersQuery.fetchNextPage()}
-                            >
-                                Load more
-                            </button>
+                            {teachersQuery.hasNextPage && (
+                                <button
+                                    className={styles.load_more_btn}
+                                    onClick={() => teachersQuery.fetchNextPage()}
+                                    disabled={teachersQuery.isFetchingNextPage}
+                                >
+                                    {teachersQuery.isFetchingNextPage
+                                        ? 'Loading...'
+                                        : 'Load more'}
+                                </button>
+                            )}
                         </>
                     ) : (
                         <NoTeachersFound />

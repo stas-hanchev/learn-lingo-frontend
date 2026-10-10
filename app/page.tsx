@@ -12,7 +12,7 @@ export default function Home() {
                   <div className={styles.hero_content}>
                     <h1 className={styles.hero_title}>Unlock your potential with the best <span className={styles.hero_title_highlight}>language</span> tutors</h1>
                     <p className={styles.hero_description}>Embark on an Exciting Language Journey with Expert Language<br/>Tutors: Elevate your language proficiency to new heights by<br/>connecting with highly qualified and experienced tutors.</p>
-                    <Link href="/tutors" className={styles.cta_button}>
+                    <Link href="/teachers" className={styles.cta_button}>
                       Get started
                     </Link>
                   </div>

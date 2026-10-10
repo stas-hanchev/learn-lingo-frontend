@@ -23,18 +23,7 @@ const LoginFormSchema = Yup.object().shape({
         .email('Please enter a valid email.')
         .required('Please enter your email.'),
 
-    password: Yup.string()
-        .min(8, 'Password must be at least 8 characters.')
-        .matches(
-            /[A-Z]/,
-            'Password must contain at least one uppercase letter.'
-        )
-        .matches(
-            /[a-z]/,
-            'Password must contain at least one lowercase letter.'
-        )
-        .matches(/[0-9]/, 'Password must contain at least one number.')
-        .required('Please enter your password.'),
+    password: Yup.string().required('Please enter your password.'),
 })
 
 export default function LoginForm({ onSubmit }: LoginFormProps) {
