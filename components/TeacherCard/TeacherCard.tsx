@@ -105,7 +105,7 @@ export default function TeacherCard({ teacher, levelValue }: TeacherCardProps) {
                         <li>
                             <p className={styles.price}>
                                 Price / 1 hour:{' '}
-                                <span className={styles.price_value}>30$</span>
+                                <span className={styles.price_value}>{teacher.price_per_hour}$</span>
                             </p>
                         </li>
                         <li>
