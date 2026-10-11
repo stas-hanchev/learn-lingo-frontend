@@ -80,7 +80,7 @@ export default function RegistrationForm({ onSubmit }: RegistrationFormProps) {
                                     aria-invalid={nameHasError}
                                     aria-describedby={
                                         nameHasError
-                                            ? 'username-error'
+                                            ? 'name-error'
                                             : undefined
                                     }
                                 />
@@ -147,7 +147,7 @@ export default function RegistrationForm({ onSubmit }: RegistrationFormProps) {
                                         passwordHasError ? '' : 'Password'
                                     }
                                     className={`${styles.password_input} ${
-                                        emailHasError ? styles.input_error : ''
+                                        passwordHasError ? styles.input_error : ''
                                     }`}
                                     aria-invalid={passwordHasError}
                                     aria-describedby={
