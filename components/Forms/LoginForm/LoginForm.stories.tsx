@@ -18,12 +18,6 @@ const meta = {
             },
         },
     },
-    argTypes: {
-        onSubmit: {
-            description:
-                'Called with `(values, formikHelpers)` once validation passes. Calls are logged in the Actions panel.',
-        },
-    },
     args: {
         onSubmit: fn(),
     },

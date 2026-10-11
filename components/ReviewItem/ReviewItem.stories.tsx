@@ -22,12 +22,6 @@ const meta = {
             </div>
         ),
     ],
-    argTypes: {
-        review: {
-            description:
-                'Review object: `reviewer_name`, `reviewer_rating` (1-5), `comment`',
-        },
-    },
     args: {
         review: {
             reviewer_name: 'Frank',

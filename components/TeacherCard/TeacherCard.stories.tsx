@@ -25,11 +25,7 @@ const meta = {
         },
     },
     argTypes: {
-        teacher: {
-            description: 'Teacher object from the API (`Teacher` in `lib/types.ts`).',
-        },
         levelValue: {
-            description: 'Level selected in the filter; the matching level badge is highlighted.',
             control: 'select',
             options: [undefined, ...Object.values(Level).filter((level) => level !== Level.all)],
         },

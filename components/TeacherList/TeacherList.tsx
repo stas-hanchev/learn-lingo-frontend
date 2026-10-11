@@ -1,4 +1,4 @@
-import { Level, Teacher } from '@/lib/types'
+import { Teacher } from '@/lib/types'
 
 import styles from './TeacherList.module.css'
 import TeacherCard from '../TeacherCard/TeacherCard'

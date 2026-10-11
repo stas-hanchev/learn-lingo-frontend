@@ -17,12 +17,10 @@
 
   height: 296px;
   width: 543px;
-  /* max-width: calc(100% - 32px); */
-  padding: 48px 96px; /* ????? */
+  padding: 48px 96px;
 
-  background: #fff;
+  background: var(--color-surface);
   border-radius: 16px;
-  /* box-shadow: 0 8px 32px rgba(16, 24, 40, 0.08); */
 }
 
 .spinner {

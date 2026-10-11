@@ -26,14 +26,6 @@ const meta = {
     argTypes: {
         children: {
             control: false,
-            description: 'Modal content.',
-        },
-        label: {
-            description: 'Accessible name of the dialog, announced by screen readers.',
-        },
-        onClose: {
-            description:
-                'Called on the close button, a backdrop click or Escape. The story does not unmount the modal, so it stays open.',
         },
     },
     args: {

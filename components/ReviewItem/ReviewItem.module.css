@@ -18,7 +18,7 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
-    color: #727271;
+    color: var(--color-text-secondary);
     margin: 0;
 }
 
@@ -31,7 +31,7 @@
 .star {
     width: 16px;
     height: 16px;
-    fill: #ffc531;
+    fill: var(--color-rating);
 }
 
 .rating_value {
@@ -40,7 +40,7 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 129%;
-    color: #121417;
+    color: var(--color-text-primary);
 }
 
 .review {
@@ -50,5 +50,5 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
-    color: #121417;
+    color: var(--color-text-primary);
 }

@@ -24,12 +24,6 @@ const meta = {
             </div>
         ),
     ],
-    argTypes: {
-        onChange: {
-            description:
-                'Called with `{ language, level, price }` after every selection; unselected filters are `null`.',
-        },
-    },
     args: {
         onChange: fn(),
     },

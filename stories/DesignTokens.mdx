@@ -1,0 +1,69 @@
+import { Meta, ColorPalette, ColorItem, Typeset } from '@storybook/addon-docs/blocks'
+import { colorTokens } from './tokens'
+
+<Meta title="Foundations/Design Tokens" />
+
+# Design tokens
+
+Colors are CSS custom properties declared on `:root` in `app/globals.css`. Use them in CSS Modules
+instead of hex values:
+
+```css
+.button {
+  background: var(--color-accent);
+  color: var(--color-text-primary);
+}
+```
+
+The values on this page come from `stories/tokens.ts`. The hidden story `Foundations/Token Sync`
+fails in `npm test` if that file and `app/globals.css` drift apart, so update both together.
+
+## Colors
+
+All text colors pass WCAG AA (4.5:1) on `--color-surface` and `--color-background`; the a11y checks
+in `npm test` fail on any new contrast violation.
+
+<ColorPalette>
+  {colorTokens.map(({ name, value, usage }) => (
+    <ColorItem key={name} title={name} subtitle={usage} colors={{ [name]: value }} />
+  ))}
+</ColorPalette>
+
+## Typography
+
+The only font family is **Roboto** (400, 500, 700), loaded with `next/font` in `lib/fonts.ts` and
+exposed as `var(--font-roboto)`.
+
+<Typeset
+  fontFamily="var(--font-roboto)"
+  fontWeight={500}
+  fontSizes={[48, 40, 24, 20, 18]}
+  sampleText="Unlock your potential with the best language tutors"
+/>
+
+<Typeset
+  fontFamily="var(--font-roboto)"
+  fontWeight={400}
+  fontSizes={[16, 14, 12]}
+  sampleText="Lessons online · Lessons done: 1098 · Rating: 4.8"
+/>
+
+| Role | Size / line height | Weight |
+| --- | --- | --- |
+| Page hero heading | 48px | 500 |
+| Modal heading | 40px | 500 |
+| Teacher name | 24px | 500 |
+| Body, inputs, buttons | 16px / 150% | 400–700 |
+| Captions, validation messages | 14px / 20px | 400 |
+
+## Radii
+
+| Value | Used for |
+| --- | --- |
+| `8px` | Modal, toast action, validation labels |
+| `12px` | Inputs and buttons |
+| `16px` | Auth form container, loader, empty-state banner |
+| `30px` | Hero block, footer blocks |
+| `35px` | Level badges in the teacher card |
+| `100px` / `50%` | Avatars, radio buttons, spinner |
+| `200px` | Pill buttons in the empty state |

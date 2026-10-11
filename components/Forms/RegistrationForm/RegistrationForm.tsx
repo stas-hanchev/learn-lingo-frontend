@@ -5,6 +5,7 @@ import { FiAlertCircle } from 'react-icons/fi'
 
 import styles from './RegistrationForm.module.css'
 import { useState } from 'react'
+import { publicPath } from '@/lib/publicPath'
 
 interface RegistrationFormProps {
     onSubmit: (
@@ -173,7 +174,7 @@ export default function RegistrationForm({ onSubmit }: RegistrationFormProps) {
                                         className={styles.eye_icon}
                                         aria-hidden="true"
                                     >
-                                        <use href="/sprite.svg#icon-eye-off"></use>
+                                        <use href={publicPath('/sprite.svg#icon-eye-off')}></use>
                                     </svg>
                                 </button>
 

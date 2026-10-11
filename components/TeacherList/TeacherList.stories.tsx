@@ -22,11 +22,7 @@ const meta = {
         },
     },
     argTypes: {
-        teachers: {
-            description: 'Teachers to render, in order.',
-        },
         levelValue: {
-            description: 'Level selected in the filter; passed to every card to highlight the matching badge.',
             control: 'select',
             options: [undefined, ...Object.values(Level).filter((level) => level !== Level.all)],
         },

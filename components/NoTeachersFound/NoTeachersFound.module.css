@@ -10,10 +10,6 @@
     margin: 21px auto;
 }
 
-.teacher_image {
-
-}
-
 .title {
     font-family: var(--font-roboto);
     font-weight: 600;
@@ -57,7 +53,7 @@
     padding: 16px 32px;
     width: 192px;
     height: 56px;
-    background: #fff;
+    background: var(--color-surface);
     position: relative;
 }
 
@@ -66,7 +62,7 @@
     border-radius: 200px;
     width: 192px;
     height: 56px;
-    color:  #fff;
+    color:  var(--color-surface);
     background:  #829b91;
 }
 

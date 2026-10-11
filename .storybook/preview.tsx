@@ -27,6 +27,12 @@ const preview: Preview = {
         a11y: {
             test: 'error',
         },
+
+        options: {
+            storySort: {
+                order: ['Introduction', 'Foundations', 'Forms', 'Overlays', 'Feedback', 'Reviews', 'Teachers', 'Layout', 'Pages'],
+            },
+        },
     },
 
     decorators: [withToaster, withQueryClient],
@@ -36,6 +42,7 @@ const preview: Preview = {
             const worker = setupWorker(...handlers)
             await worker.start({
                 quiet: true,
+                serviceWorker: { url: `${import.meta.env.BASE_URL}mockServiceWorker.js` },
                 onUnhandledRequest: (request, print) => {
                     if (new URL(request.url).pathname.startsWith('/api/')) print.error()
                 },

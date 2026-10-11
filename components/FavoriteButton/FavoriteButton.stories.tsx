@@ -22,11 +22,6 @@ const meta = {
             },
         },
     },
-    argTypes: {
-        teacherId: {
-            description: 'Id of the teacher to add to or remove from favorites.',
-        },
-    },
     args: {
         teacherId: janeSmith._id,
     },

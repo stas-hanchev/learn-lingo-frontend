@@ -13,6 +13,7 @@ import { login, register, logout } from '@/lib/api'
 import { useAuthStore } from '@/lib/store/authStore'
 import { useAuthModalStore } from '@/lib/store/authModalStore'
 import { notifyError, notifySuccess } from '@/lib/notify'
+import { publicPath } from '@/lib/publicPath'
 
 export default function AuthNavigation() {
     const { isAuthenticated, user } = useAuthStore()
@@ -87,7 +88,7 @@ export default function AuthNavigation() {
                 onClick={openLoginModal}
             >
                 <svg className={styles.login_icon} width="20" height="20">
-                    <use href="/sprite.svg#icon-log-in"></use>
+                    <use href={publicPath('/sprite.svg#icon-log-in')}></use>
                 </svg>
                 Log in
             </button>

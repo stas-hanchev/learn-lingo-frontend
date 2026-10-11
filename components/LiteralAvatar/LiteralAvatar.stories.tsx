@@ -18,7 +18,6 @@ const meta = {
     argTypes: {
         name: {
             control: 'text',
-            description: 'Name whose first letter is shown (always uppercased)',
         },
     },
     args: {

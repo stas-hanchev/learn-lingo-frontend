@@ -5,6 +5,7 @@ import { FiAlertCircle } from 'react-icons/fi'
 
 import styles from './LoginForm.module.css'
 import { useState } from 'react'
+import { publicPath } from '@/lib/publicPath'
 
 interface LoginFormProps {
     onSubmit: (
@@ -119,7 +120,7 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
                                         className={styles.eye_icon}
                                         aria-hidden="true"
                                     >
-                                        <use href="/sprite.svg#icon-eye-off"></use>
+                                        <use href={publicPath('/sprite.svg#icon-eye-off')}></use>
                                     </svg>
                                 </button>
 

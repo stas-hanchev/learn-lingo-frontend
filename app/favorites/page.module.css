@@ -1,6 +1,6 @@
 .main {
     margin-top: 20px;
-    background-color: #f8f8f8;
+    background-color: var(--color-background);
 }
 
 .container {

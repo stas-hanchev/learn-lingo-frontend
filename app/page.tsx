@@ -2,6 +2,7 @@ import Image from 'next/image'
 import styles from './page.module.css'
 import Footer from '@/components/Footer/Footer'
 import Link from 'next/link'
+import { publicPath } from '@/lib/publicPath'
 
 export default function Home() {
     return (
@@ -16,7 +17,7 @@ export default function Home() {
                       Get started
                     </Link>
                   </div>
-                  <Image className={styles.hero_image} src="/hero_image.png" alt="Hero Image" width={568} height={530} />
+                  <Image className={styles.hero_image} src={publicPath('/hero_image.png')} alt="Hero Image" width={568} height={530} />
                 </div>
             </section>
         </main>

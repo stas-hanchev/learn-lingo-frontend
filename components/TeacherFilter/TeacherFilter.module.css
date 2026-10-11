@@ -14,7 +14,7 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 129%;
-    color: #727271;
+    color: var(--color-text-secondary);
     margin: 0;
     margin-bottom: 8px;
 }

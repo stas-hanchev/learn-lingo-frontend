@@ -1,6 +1,6 @@
 .heart_icon {
     fill: none;
-    stroke: #121417;
+    stroke: var(--color-text-primary);
     stroke-width: 2px;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -23,7 +23,7 @@
 
 .heart_icon {
     fill: none;
-    stroke: #121417;
+    stroke: var(--color-text-primary);
     stroke-width: 2px;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -31,6 +31,6 @@
 }
 
 .heart_icon_active {
-    fill: #f4c550;
-    stroke: #f4c550;
+    fill: var(--color-accent);
+    stroke: var(--color-accent);
 }
