@@ -1,5 +1,16 @@
 :root {
   --font-family: "Roboto", sans-serif;
+
+  --color-text-primary: #121417;
+  --color-text-secondary: #727271;
+  --color-accent: #f4c550;
+  --color-accent-light: #fbe9ba;
+  --color-rating: #ffc531;
+  --color-background: #f8f8f8;
+  --color-surface: #ffffff;
+  --color-border: rgba(18, 20, 23, 0.1);
+  --color-error: #ee0017;
+  --color-success: #228726;
 }
 
 *,

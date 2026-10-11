@@ -4,11 +4,13 @@ import { useEffect } from 'react'
 
 interface ModalProps {
     children: React.ReactNode;
+    label: string;
     onClose: () => void;
 }
 
 export default function Modal({
     children,
+    label,
     onClose,
 }: ModalProps) {
     const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -39,6 +41,7 @@ export default function Modal({
             onClick={handleBackdropClick}
             role="dialog"
             aria-modal="true"
+            aria-label={label}
         >
             <div className={css.modal}>
                 <button

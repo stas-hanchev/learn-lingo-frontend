@@ -13,6 +13,7 @@ import Modal from '../Modal/Modal'
 import BookingForm from '@/components/Forms/BookingForm/BookingForm'
 import { FormikHelpers } from 'formik'
 import { notifyError, notifyLoginRequired, notifySuccess } from '@/lib/notify'
+import { publicPath } from '@/lib/publicPath'
 
 interface TeacherCardProps {
     teacher: Teacher
@@ -81,7 +82,7 @@ export default function TeacherCard({ teacher, levelValue }: TeacherCardProps) {
                                     width={16}
                                     height={16}
                                 >
-                                    <use href="/sprite.svg#icon-book"></use>
+                                    <use href={publicPath('/sprite.svg#icon-book')}></use>
                                 </svg>
                                 <p className={styles.characteristic_text}>
                                     Lessons online
@@ -184,7 +185,7 @@ export default function TeacherCard({ teacher, levelValue }: TeacherCardProps) {
                 )}
 
                 {isBookingModalOpen && (
-                    <Modal onClose={() => setIsBookingModalOpen(false)}>
+                    <Modal label="Book trial lesson" onClose={() => setIsBookingModalOpen(false)}>
                         <h2 className={styles.heading}>Book trial lesson</h2>
                         <p className={styles.description}>
                             Our experienced tutor will assess your current

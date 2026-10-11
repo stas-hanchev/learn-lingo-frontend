@@ -9,12 +9,12 @@
 .btn {
     border-radius: 12px;
     padding: 16px 48px;
-    background: #f4c550;
+    background: var(--color-accent);
     font-family: var(--font-roboto);
     font-weight: 700;
     font-size: 18px;
     line-height: 156%;
-    color: #121417;
+    color: var(--color-text-primary);
     border: none;
     margin: 0 auto;
     margin-bottom: 96px;

@@ -65,9 +65,10 @@ export default function TeacherFilter({ onChange }: TeacherFilterProps) {
     return (
         <div className={styles.filters_container}>
             <div className={styles.filter_container}>
-                <p className={styles.filter_name}>Languages</p>
+                <p id="language-filter-label" className={styles.filter_name}>Languages</p>
                 <Select<OptionType, false>
                     instanceId="language-select"
+                    aria-labelledby="language-filter-label"
                     styles={customStyles}
                     options={languageOptions}
                     onChange={(option) => updateFilters({ language: option })}
@@ -76,9 +77,10 @@ export default function TeacherFilter({ onChange }: TeacherFilterProps) {
             </div>
 
             <div className={styles.filter_container}>
-                <p className={styles.filter_name}>Level of knowledge</p>
+                <p id="level-filter-label" className={styles.filter_name}>Level of knowledge</p>
                 <Select<OptionType, false>
                     instanceId="level-select"
+                    aria-labelledby="level-filter-label"
                     styles={customStyles}
                     options={levelOptions}
                     onChange={(option) => updateFilters({ level: option })}
@@ -87,9 +89,10 @@ export default function TeacherFilter({ onChange }: TeacherFilterProps) {
             </div>
 
             <div className={styles.filter_container}>
-                <p className={styles.filter_name}>Price, $</p>
+                <p id="price-filter-label" className={styles.filter_name}>Price, $</p>
                 <Select<OptionType, false>
                     instanceId="price-select"
+                    aria-labelledby="price-filter-label"
                     styles={customStyles}
                     options={priceOptions}
                     onChange={(option) => updateFilters({ price: option })}

@@ -77,13 +77,14 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
 
                 return (
                     <Form className={styles.form} noValidate>
-                        <h3 className={styles.subtitle}>What is your main reason for learning English?</h3>
+                        <h3 id="reason-label" className={styles.subtitle}>What is your main reason for learning English?</h3>
                         <div
                             className={`${styles.field_group} ${styles.reason_field_group}`}
                         >
                             <div
                                 className={`${styles.radio_group}`}
                                 role="radiogroup"
+                                aria-labelledby="reason-label"
                                 aria-invalid={reasonHasError}
                                 aria-describedby={
                                     reasonHasError ? 'reason-error' : undefined
@@ -126,6 +127,7 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
                             <div className={styles.input_wrapper}>
                                 <Field
                                     id="full_name"
+                                    aria-label="Full Name"
                                     name="full_name"
                                     placeholder={
                                         fullNameHasError ? '' : 'Full Name'
@@ -167,6 +169,7 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
                             <div className={styles.input_wrapper}>
                                 <Field
                                     id="email"
+                                    aria-label="Email"
                                     type="email"
                                     name="email"
                                     placeholder={emailHasError ? '' : 'Email'}
@@ -202,6 +205,7 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
                             <div className={styles.input_wrapper}>
                                 <Field
                                     id="phone_number"
+                                    aria-label="Phone number"
                                     type="text"
                                     name="phone_number"
                                     placeholder={

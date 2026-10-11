@@ -3,7 +3,7 @@
     gap: 48px;
     align-items: flex-start;
     padding: 24px;
-    background-color: #fff;
+    background-color: var(--color-surface);
     width: 1232px;
 }
 
@@ -14,11 +14,11 @@
 }
 
 .teacher_avatar_container {
-    border: 3px solid #fbe9ba;
+    border: 3px solid var(--color-accent-light);
     border-radius: 100px;
     width: 120px;
     height: 120px;
-    background: #fff;
+    background: var(--color-surface);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +39,7 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
-    color: #8a8a89;
+    color: var(--color-text-secondary);
     margin: 0;
     margin-right: 192px;
 }
@@ -66,7 +66,7 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
-    color: #121417;
+    color: var(--color-text-primary);
     margin: 0;
 }
 
@@ -80,7 +80,7 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
-    color: #121417;
+    color: var(--color-text-primary);
 }
 
 .rating_container {
@@ -92,7 +92,7 @@
 .star {
     width: 15px;
     height: 14px;
-    fill: #ffc531;
+    fill: var(--color-rating);
 }
 
 .rating {
@@ -100,7 +100,7 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
-    color: #121417;
+    color: var(--color-text-primary);
     margin: 0;
 }
 
@@ -109,12 +109,12 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
-    color: #121417;
+    color: var(--color-text-primary);
     margin: 0;
 }
 
 .price_value {
-    color: #38cd3e;
+    color: var(--color-success);
 }
 
 .teacher_name {
@@ -124,7 +124,7 @@
     font-weight: 500;
     font-size: 24px;
     line-height: 100%;
-    color: #121417;
+    color: var(--color-text-primary);
     margin-bottom: 32px;
 }
 
@@ -133,13 +133,13 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
-    color: #8a8a89;
+    color: var(--color-text-secondary);
 }
 
 .languages_values {
     text-decoration: underline;
     text-decoration-skip-ink: none;
-    color: #121417;
+    color: var(--color-text-primary);
     margin-bottom: 8px;
 }
 
@@ -148,12 +148,12 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
-    color: #8a8a89;
+    color: var(--color-text-secondary);
     margin-bottom: 8px;
 }
 
 .lessons_info_value {
-   color: #121417; 
+   color: var(--color-text-primary); 
 }
 
 .conditions_info {
@@ -161,12 +161,12 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
-    color: #8a8a89;
+    color: var(--color-text-secondary);
     margin-bottom: 16px;
 }
 
 .conditions_value {
-    color: #121417; 
+    color: var(--color-text-primary); 
 }
 
 .teacher_details_button {
@@ -176,9 +176,9 @@
     line-height: 150%;
     text-decoration: underline;
     text-decoration-skip-ink: none;
-    color: #121417;
+    color: var(--color-text-primary);
     border: none;
-    background-color: #fff;
+    background-color: var(--color-surface);
     padding: 0;
 }
 
@@ -198,16 +198,12 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 114%;
-    color: #121417;
+    color: var(--color-text-primary);
 }
 
 .desired_level {
-    background: #f4c550;
+    background: var(--color-accent);
     border: none;
-}
-
-.expanded_info {
-
 }
 
 .experience {
@@ -215,7 +211,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
-    color: #121417;
+    color: var(--color-text-primary);
     margin-bottom: 32px;
 }
 
@@ -223,12 +219,12 @@
     border-radius: 12px;
     width: 232px;
     height: 60px;
-    background: #f4c550;
+    background: var(--color-accent);
     font-family: var(--font-roboto);
     font-weight: 700;
     font-size: 18px;
     line-height: 156%;
-    color: #121417;
+    color: var(--color-text-primary);
     border: none;
     margin-top: 32px;
 }
@@ -239,7 +235,7 @@
     font-size: 40px;
     line-height: 120%;
     letter-spacing: -0.02em;
-    color: #121417;
+    color: var(--color-text-primary);
     margin: 0;
     margin-bottom: 20px;
 }
@@ -278,7 +274,7 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 133%;
-    color: #8a8a89;
+    color: var(--color-text-secondary);
 }
 
 .your_teacher_name {
@@ -287,5 +283,5 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
-    color: #121417;
+    color: var(--color-text-primary);
 }

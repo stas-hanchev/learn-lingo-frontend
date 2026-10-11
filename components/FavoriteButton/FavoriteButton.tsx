@@ -5,6 +5,7 @@ import { addFavoriteTeacher, getFavoriteTeachers, removeFavoriteTeacher } from '
 import { useAuthStore } from '@/lib/store/authStore'
 import { notifyError, notifyLoginRequired, notifySuccess } from '@/lib/notify'
 import styles from './FavoriteButton.module.css'
+import { publicPath } from '@/lib/publicPath'
 
 interface FavoriteButtonProps {
     teacherId: string
@@ -65,7 +66,7 @@ export default function FavoriteButton({ teacherId }: FavoriteButtonProps) {
                 height={26}
                 className={`${styles.heart_icon} ${isFavorite ? styles.heart_icon_active : ''}`}
             >
-                <use href="/sprite.svg#icon-heart"></use>
+                <use href={publicPath('/sprite.svg#icon-heart')}></use>
             </svg>
         </button>
     )

@@ -13,6 +13,7 @@ import { login, register, logout } from '@/lib/api'
 import { useAuthStore } from '@/lib/store/authStore'
 import { useAuthModalStore } from '@/lib/store/authModalStore'
 import { notifyError, notifySuccess } from '@/lib/notify'
+import { publicPath } from '@/lib/publicPath'
 
 export default function AuthNavigation() {
     const { isAuthenticated, user } = useAuthStore()
@@ -87,13 +88,13 @@ export default function AuthNavigation() {
                 onClick={openLoginModal}
             >
                 <svg className={styles.login_icon} width="20" height="20">
-                    <use href="/sprite.svg#icon-log-in"></use>
+                    <use href={publicPath('/sprite.svg#icon-log-in')}></use>
                 </svg>
                 Log in
             </button>
 
             {openedModal === 'login' && (
-                <Modal onClose={closeModal}>
+                <Modal label="Log in" onClose={closeModal}>
                     <h2 className={styles.heading}>Log in</h2>
                     <p className={styles.description}>
                         Welcome back! Please enter your credentials to access
@@ -112,7 +113,7 @@ export default function AuthNavigation() {
             </button>
 
             {openedModal === 'registration' && (
-                <Modal onClose={closeModal}>
+                <Modal label="Registration" onClose={closeModal}>
                     <h2 className={styles.heading}>Registration</h2>
                     <p className={styles.description}>
                         Thank you for your interest in our platform! In order to

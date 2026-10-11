@@ -5,6 +5,7 @@ import { FiAlertCircle } from 'react-icons/fi'
 
 import styles from './LoginForm.module.css'
 import { useState } from 'react'
+import { publicPath } from '@/lib/publicPath'
 
 interface LoginFormProps {
     onSubmit: (
@@ -53,6 +54,7 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
                             <div className={styles.input_wrapper}>
                                 <Field
                                     id="email"
+                                    aria-label="Email"
                                     type="email"
                                     name="email"
                                     placeholder={emailHasError ? '' : 'Email'}
@@ -88,6 +90,7 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
                             <div className={styles.input_wrapper}>
                                 <Field
                                     id="password"
+                                    aria-label="Password"
                                     type={`${showPassword ? 'text' : 'password'}`}
                                     name="password"
                                     placeholder={
@@ -104,14 +107,22 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
                                     }
                                 />
 
-                                <svg
-                                    width="20"
-                                    height="20"
-                                    className={`${styles.eye_icon} ${passwordHasError ? styles.eye_icon_with_error : ''}`}
+                                <button
+                                    type="button"
+                                    className={`${styles.eye_button} ${passwordHasError ? styles.eye_button_with_error : ''}`}
                                     onClick={() => setShowPassword(!showPassword)}
+                                    aria-label="Show password"
+                                    aria-pressed={showPassword}
                                 >
-                                    <use href="/sprite.svg#icon-eye-off"></use>
-                                </svg>
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        className={styles.eye_icon}
+                                        aria-hidden="true"
+                                    >
+                                        <use href={publicPath('/sprite.svg#icon-eye-off')}></use>
+                                    </svg>
+                                </button>
 
                                 {passwordHasError && (
                                     <FiAlertCircle

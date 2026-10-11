@@ -13,7 +13,7 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 125%;
-    color: #121417;
+    color: var(--color-text-primary);
     border: none;
     background-color: inherit;
 }
@@ -23,7 +23,7 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 125%;
-    color: #121417;
+    color: var(--color-text-primary);
     border: none;
     background-color: inherit;
 }
@@ -32,7 +32,7 @@
     width: 20px;
     height: 20px;
     fill: none;
-    stroke: #F4C550;
+    stroke: var(--color-accent);
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -44,12 +44,12 @@
     padding: 14px 39px;
     width: 166px;
     height: 48px;
-    background: #121417;
+    background: var(--color-text-primary);
     font-family: var(--font-roboto);
     font-weight: 700;
     font-size: 16px;
     line-height: 125%;
-    color: #fff;
+    color: var(--color-surface);
     text-decoration: none;
 }
 
@@ -59,12 +59,12 @@
     padding: 14px 39px;
     width: 166px;
     height: 48px;
-    background: #121417;
+    background: var(--color-text-primary);
     font-family: var(--font-roboto);
     font-weight: 700;
     font-size: 16px;
     line-height: 125%;
-    color: #fff;
+    color: var(--color-surface);
     text-decoration: none;
 }
 
@@ -75,7 +75,7 @@
     font-size: 40px;
     line-height: 120%;
     letter-spacing: -0.02em;
-    color: #121417;
+    color: var(--color-text-primary);
     margin-bottom: 20px;
 }
 

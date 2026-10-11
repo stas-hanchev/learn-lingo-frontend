@@ -18,7 +18,7 @@
     align-items: center;
     gap: 100px;
 
-    border: 1.50px dashed #f4c550;
+    border: 1.50px dashed var(--color-accent);
     border-radius: 30px;
 }
 
@@ -34,7 +34,7 @@
     font-size: 28px;
     line-height: 114%;
     letter-spacing: -0.02em;
-    color: #121417;
+    color: var(--color-text-primary);
 }
 
 .description {

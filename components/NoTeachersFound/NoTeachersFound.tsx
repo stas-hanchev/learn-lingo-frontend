@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import styles from './NoTeachersFound.module.css';
+import { publicPath } from '@/lib/publicPath'
 
 export default function NoTeachersFound () {
     return (
         <div className={styles.banner}>
             <Image
-                src='/teacher.png'
+                src={publicPath('/teacher.png')}
                 alt='Teacher drawing'
                 className={styles.teacher_image}
                 width={488}

@@ -5,6 +5,7 @@ import { FiAlertCircle } from 'react-icons/fi'
 
 import styles from './RegistrationForm.module.css'
 import { useState } from 'react'
+import { publicPath } from '@/lib/publicPath'
 
 interface RegistrationFormProps {
     onSubmit: (
@@ -71,6 +72,7 @@ export default function RegistrationForm({ onSubmit }: RegistrationFormProps) {
                             <div className={styles.input_wrapper}>
                                 <Field
                                     id="name"
+                                    aria-label="Name"
                                     type="text"
                                     name="name"
                                     placeholder={nameHasError ? '' : 'Name'}
@@ -80,7 +82,7 @@ export default function RegistrationForm({ onSubmit }: RegistrationFormProps) {
                                     aria-invalid={nameHasError}
                                     aria-describedby={
                                         nameHasError
-                                            ? 'username-error'
+                                            ? 'name-error'
                                             : undefined
                                     }
                                 />
@@ -106,6 +108,7 @@ export default function RegistrationForm({ onSubmit }: RegistrationFormProps) {
                             <div className={styles.input_wrapper}>
                                 <Field
                                     id="email"
+                                    aria-label="Email"
                                     type="email"
                                     name="email"
                                     placeholder={emailHasError ? '' : 'Email'}
@@ -141,13 +144,14 @@ export default function RegistrationForm({ onSubmit }: RegistrationFormProps) {
                             <div className={styles.input_wrapper}>
                                 <Field
                                     id="password"
+                                    aria-label="Password"
                                     type={`${showPassword ? 'text' : 'password'}`}
                                     name="password"
                                     placeholder={
                                         passwordHasError ? '' : 'Password'
                                     }
                                     className={`${styles.password_input} ${
-                                        emailHasError ? styles.input_error : ''
+                                        passwordHasError ? styles.input_error : ''
                                     }`}
                                     aria-invalid={passwordHasError}
                                     aria-describedby={
@@ -157,14 +161,22 @@ export default function RegistrationForm({ onSubmit }: RegistrationFormProps) {
                                     }
                                 />
 
-                                <svg
-                                    width="20"
-                                    height="20"
-                                    className={`${styles.eye_icon} ${passwordHasError ? styles.eye_icon_with_error : ''}`}
+                                <button
+                                    type="button"
+                                    className={`${styles.eye_button} ${passwordHasError ? styles.eye_button_with_error : ''}`}
                                     onClick={() => setShowPassword(!showPassword)}
+                                    aria-label="Show password"
+                                    aria-pressed={showPassword}
                                 >
-                                    <use href="/sprite.svg#icon-eye-off"></use>
-                                </svg>
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        className={styles.eye_icon}
+                                        aria-hidden="true"
+                                    >
+                                        <use href={publicPath('/sprite.svg#icon-eye-off')}></use>
+                                    </svg>
+                                </button>
 
                                 {passwordHasError && (
                                     <FiAlertCircle

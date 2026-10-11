@@ -8,8 +8,8 @@
     padding: 6px 14px;
     border: none;
     border-radius: 8px;
-    background-color: #F4C550;
-    color: #121417;
+    background-color: var(--color-accent);
+    color: var(--color-text-primary);
     font-weight: 700;
     cursor: pointer;
     white-space: nowrap;

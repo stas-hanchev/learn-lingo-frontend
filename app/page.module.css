@@ -14,7 +14,7 @@
   padding: 98px 108px 98px 64px;
   border-radius: 30px;
   max-width: 720px;
-  background: #f8f8f8;
+  background: var(--color-background);
 }
 
 .hero_title {
@@ -23,14 +23,14 @@
   font-size: 48px;
   line-height: 117%;
   letter-spacing: -0.02em;
-  color: #121417;
+  color: var(--color-text-primary);
   margin: 0;
 }
 
 .hero_title_highlight {
   font-style: italic;
   font-weight: 400;
-  background: #fbe9ba;
+  background: var(--color-accent-light);
 }
 
 .hero_description {
@@ -39,7 +39,7 @@
   font-size: 16px;
   line-height: 138%;
   letter-spacing: -0.02em;
-  color: #121417;
+  color: var(--color-text-primary);
   margin-bottom: 64px;
 }
 
@@ -49,9 +49,9 @@
   padding: 16px 88px;
   width: 267px;
   height: 60px;
-  background: #f4c550;
+  background: var(--color-accent);
   text-decoration: none;
-  color: #121417;
+  color: var(--color-text-primary);
 }
 
 .hero_image {

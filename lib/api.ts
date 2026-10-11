@@ -14,7 +14,7 @@ import {
 
 const nextServer = axios.create({
     baseURL: process.env.NEXT_PUBLIC_PROXY_API_URL,
-    withCredentials: true, // дозволяє axios працювати з cookie
+    withCredentials: true
 })
 
 export const getTeachers = async (query: TeacherQuery) => {
