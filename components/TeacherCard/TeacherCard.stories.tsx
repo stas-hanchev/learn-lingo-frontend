@@ -5,13 +5,13 @@ import TeacherCard from './TeacherCard'
 import { Level } from '@/lib/types'
 import { useAuthModalStore } from '@/lib/store/authModalStore'
 import { janeSmith, olhaKovalenko } from '@/mocks/teachers'
-import { withQueryClient, withTeachersPage, withToaster } from '@/.storybook/decorators'
+import { withTeachersPage } from '@/.storybook/decorators'
 
 const meta = {
     title: 'Teachers/TeacherCard',
     component: TeacherCard,
     tags: ['autodocs'],
-    decorators: [withTeachersPage, withToaster, withQueryClient],
+    decorators: [withTeachersPage],
     parameters: {
         layout: 'fullscreen',
         docs: {
@@ -20,7 +20,7 @@ const meta = {
                     'Teacher card from the teachers list. "Read more" expands the experience and reviews (`ReviewItem`); ' +
                     '"Book trial lesson" opens the booking modal for a logged-in user and shows a login prompt for a guest. ' +
                     'The auth state comes from the zustand store and is set per story with `parameters.auth`; ' +
-                    'the favorites list for `FavoriteButton` is seeded with `parameters.favorites`.',
+                    'the favorites served by the MSW mock are seeded with `parameters.favorites`.',
             },
         },
     },
@@ -129,7 +129,7 @@ export const AuthorizedFavorite: Story = {
         },
     },
     play: async ({ canvas }) => {
-        const favoriteButton = canvas.getByRole('button', { name: 'Remove from favorites' })
+        const favoriteButton = await canvas.findByRole('button', { name: 'Remove from favorites' })
         await expect(favoriteButton).toHaveAttribute('aria-pressed', 'true')
     },
 }

@@ -3,34 +3,23 @@ import { useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import ToastProvider from '../components/ToastProvider/ToastProvider'
-import { Teacher } from '../lib/types'
 
-export const withQueryClient: Decorator = (Story, { id, parameters }) => (
-    <StoryQueryClientProvider
-        key={id}
-        favorites={(parameters.favorites as Teacher[] | undefined) ?? []}
-    >
+export const withQueryClient: Decorator = (Story, { id }) => (
+    <StoryQueryClientProvider key={id}>
         <Story />
     </StoryQueryClientProvider>
 )
 
-function StoryQueryClientProvider({
-    favorites,
-    children,
-}: {
-    favorites: Teacher[]
-    children: React.ReactNode
-}) {
-    const [queryClient] = useState(() => {
-        const client = new QueryClient({
-            defaultOptions: {
-                queries: { retry: false, staleTime: Infinity },
-                mutations: { retry: false },
-            },
-        })
-        client.setQueryData(['favorites'], favorites)
-        return client
-    })
+function StoryQueryClientProvider({ children }: { children: React.ReactNode }) {
+    const [queryClient] = useState(
+        () =>
+            new QueryClient({
+                defaultOptions: {
+                    queries: { retry: false, staleTime: Infinity },
+                    mutations: { retry: false },
+                },
+            })
+    )
 
     return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 }

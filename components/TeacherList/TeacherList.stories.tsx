@@ -4,13 +4,13 @@ import { expect } from 'storybook/test'
 import TeacherList from './TeacherList'
 import { Level } from '@/lib/types'
 import { janeSmith, johnDoe, teachers } from '@/mocks/teachers'
-import { withQueryClient, withTeachersPage, withToaster } from '@/.storybook/decorators'
+import { withTeachersPage } from '@/.storybook/decorators'
 
 const meta = {
     title: 'Teachers/TeacherList',
     component: TeacherList,
     tags: ['autodocs'],
-    decorators: [withTeachersPage, withToaster, withQueryClient],
+    decorators: [withTeachersPage],
     parameters: {
         layout: 'fullscreen',
         docs: {
@@ -60,7 +60,7 @@ export const AuthorizedWithFavorite: Story = {
         favorites: [johnDoe],
     },
     play: async ({ canvas }) => {
+        await expect(await canvas.findAllByRole('button', { name: 'Remove from favorites' })).toHaveLength(1)
         await expect(canvas.getAllByRole('button', { name: 'Add to favorites' })).toHaveLength(2)
-        await expect(canvas.getAllByRole('button', { name: 'Remove from favorites' })).toHaveLength(1)
     },
 }

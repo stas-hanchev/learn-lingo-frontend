@@ -74,6 +74,32 @@ export const olhaKovalenko: Teacher = {
 
 export const teachers: Teacher[] = [janeSmith, johnDoe, olhaKovalenko]
 
+const createTeacher = (
+    index: number,
+    name: string,
+    surname: string,
+    languages: string[],
+    levels: string[],
+    price_per_hour: number
+): Teacher => ({
+    ...johnDoe,
+    _id: `teacher-${name.toLowerCase()}-${surname.toLowerCase()}`,
+    name,
+    surname,
+    languages,
+    levels,
+    price_per_hour,
+    avatar_url: `https://ftp.goit.study/img/avatars/${index}.jpg`,
+})
+
+export const teachersCatalog: Teacher[] = [
+    ...teachers,
+    createTeacher(4, 'Marie', 'Dubois', ['French'], ['A1 Beginner', 'B1 Intermediate'], 20),
+    createTeacher(5, 'Hans', 'Muller', ['German', 'English'], ['B2 Upper-Intermediate', 'C1 Advanced'], 35),
+    createTeacher(6, 'Anna', 'Nowak', ['Polish'], ['A1 Beginner', 'A2 Elementary'], 10),
+    createTeacher(7, 'Emma', 'Brown', ['English'], ['C1 Advanced', 'C2 Proficient'], 40),
+]
+
 export const mockUser: User = {
     _id: 'user-1',
     email: 'student@example.com',
