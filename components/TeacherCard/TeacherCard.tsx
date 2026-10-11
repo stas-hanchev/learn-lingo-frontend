@@ -184,7 +184,7 @@ export default function TeacherCard({ teacher, levelValue }: TeacherCardProps) {
                 )}
 
                 {isBookingModalOpen && (
-                    <Modal onClose={() => setIsBookingModalOpen(false)}>
+                    <Modal label="Book trial lesson" onClose={() => setIsBookingModalOpen(false)}>
                         <h2 className={styles.heading}>Book trial lesson</h2>
                         <p className={styles.description}>
                             Our experienced tutor will assess your current

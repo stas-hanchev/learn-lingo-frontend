@@ -152,3 +152,22 @@ export const Submitting: Story = {
         await waitFor(() => expect(button).toBeDisabled())
     },
 }
+
+export const TogglePasswordVisibility: Story = {
+    play: async ({ canvas, userEvent }) => {
+        const password = canvas.getByLabelText('Password')
+        const toggle = canvas.getByRole('button', { name: 'Show password' })
+
+        await userEvent.type(password, 'Secret123')
+        await userEvent.tab()
+        await expect(toggle).toHaveFocus()
+
+        await userEvent.keyboard('{Enter}')
+        await expect(password).toHaveAttribute('type', 'text')
+        await expect(toggle).toHaveAttribute('aria-pressed', 'true')
+
+        await userEvent.keyboard(' ')
+        await expect(password).toHaveAttribute('type', 'password')
+        await expect(toggle).toHaveAttribute('aria-pressed', 'false')
+    },
+}

@@ -93,7 +93,7 @@ export default function AuthNavigation() {
             </button>
 
             {openedModal === 'login' && (
-                <Modal onClose={closeModal}>
+                <Modal label="Log in" onClose={closeModal}>
                     <h2 className={styles.heading}>Log in</h2>
                     <p className={styles.description}>
                         Welcome back! Please enter your credentials to access
@@ -112,7 +112,7 @@ export default function AuthNavigation() {
             </button>
 
             {openedModal === 'registration' && (
-                <Modal onClose={closeModal}>
+                <Modal label="Registration" onClose={closeModal}>
                     <h2 className={styles.heading}>Registration</h2>
                     <p className={styles.description}>
                         Thank you for your interest in our platform! In order to

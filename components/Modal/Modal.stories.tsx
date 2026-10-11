@@ -28,12 +28,16 @@ const meta = {
             control: false,
             description: 'Modal content.',
         },
+        label: {
+            description: 'Accessible name of the dialog, announced by screen readers.',
+        },
         onClose: {
             description:
                 'Called on the close button, a backdrop click or Escape. The story does not unmount the modal, so it stays open.',
         },
     },
     args: {
+        label: 'Log in',
         onClose: fn(),
         children: (
             <>
@@ -55,6 +59,7 @@ export const Default: Story = {
         const dialog = screen.getByRole('dialog')
 
         await expect(dialog).toHaveAttribute('aria-modal', 'true')
+        await expect(dialog).toHaveAccessibleName('Log in')
         await expect(
             screen.getByRole('heading', { name: 'Log in' })
         ).toBeVisible()

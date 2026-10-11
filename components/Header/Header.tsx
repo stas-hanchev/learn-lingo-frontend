@@ -13,8 +13,8 @@ export default function Header() {
         <header className={styles.header}>
             <div className={styles.container}>
                 <div className={styles.logo_and_navigation}>
-                    <Link href="/" className={styles.logo_link}>
-                        <svg className={styles.logo} width="133" height="28">
+                    <Link href="/" className={styles.logo_link} aria-label="LearnLingo home">
+                        <svg className={styles.logo} width="133" height="28" aria-hidden="true">
                             <use href="/logo.svg"></use>
                         </svg>
                     </Link>

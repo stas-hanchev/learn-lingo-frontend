@@ -112,15 +112,27 @@
     right: 105px;
     width: 20px;
     height: 20px;
-    color: #ff3448;
+    color: #ee0017;
     pointer-events: none;
 }
 
-.eye_icon {
+.eye_button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 105px;
+    display: flex;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.eye_button_with_error {
+    right: 135px;
+}
+
+.eye_icon {
     width: 20px;
     height: 20px;
     fill: none;
@@ -128,10 +140,6 @@
     stroke-width: 2px;
     stroke-linecap: round;
     stroke-linejoin: round;
-}
-
-.eye_icon_with_error {
-    right: 135px;
 }
 
 .error {
@@ -142,7 +150,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
-    color: #ff3448;
+    color: #ee0017;
 }
 
 .error_label {
